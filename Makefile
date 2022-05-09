@@ -1,14 +1,14 @@
 start:
 	docker-compose up
 
-test:
+compose-test:
 	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
-build:
-	docker-compose -f docker-compose.yml build app
+compose-build:
+	docker-compose -f docker-compose.yml build
 
 ci:
-	make test
+	make compose-test
 
 push:
 	docker push levelness/devops-for-programmers-project-lvl1:latest	
