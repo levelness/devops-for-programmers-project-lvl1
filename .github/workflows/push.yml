@@ -30,4 +30,5 @@ jobs:
 
       - run: make compose-build
       - run: make ci
+
       - run: make push
