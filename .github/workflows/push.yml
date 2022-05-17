@@ -28,7 +28,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - run: make compose-build
-      - run: make ci
+      - name: Prepare env config
+        run: cd app && make prepare-env
 
-      - run: make push
+      - name: Lauch tests
+        run: make ci
+
+      - name: Build docker image
+        run: make compose-build
+
+      - name: Push docker image to Dockerhub
+        run: make compose-push

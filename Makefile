@@ -1,14 +1,11 @@
-start:
-	docker-compose up
-
-compose-test:
-	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
-
 compose-build:
-	docker-compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yml build app
+
+compose-dev:
+	docker-compose --env-file ./app/.env up
 
 ci:
-	make compose-test
+	docker-compose --env-file ./app/.env -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
-push:
-	docker push levelness/devops-for-programmers-project-lvl1:latest	
+compose-push:
+	docker-compose -f docker-compose.yml push app
